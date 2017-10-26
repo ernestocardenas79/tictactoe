@@ -27,15 +27,10 @@ namespace Tictactoe
 
             do
             {
-                //determinar siguiente jugador
-                //elejir coordenada
-                //validar si es posible escojer esa coordenada
                 shift.nextPlayer().chooseMove(board);
                 board.print();
 
-                //validar si hay 3 en raya
-                //validar que el tablero no este lleno
-            } while (board.thereIsTTT(shift.currentPlayer.symbol)|| board.areYouFull());
+            } while (!board.thereIsTTT(shift.currentPlayer.symbol) && !board.areYouFull());
 
             if (board.areYouFull())
             {
@@ -45,7 +40,6 @@ namespace Tictactoe
                 Console.WriteLine("Felicidades al Jugador {0} por haber ganado la partida", shift.currentPlayer.number);
             }
 
-            //opcion para comenzar de nuevo
             if (restartGame())
             {
                 play();

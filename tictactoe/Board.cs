@@ -66,8 +66,7 @@ namespace Tictactoe
         {
             var hasCoordinateToCompare = false;
             Coordinate coordinateToCompare = new Coordinate();
-            RelatedInfo relatedInfo = new RelatedInfo();
-            relatedInfo.hasRelation = false;
+            RelatedInfo relatedInfo = new RelatedInfo() { hasRelation = false };
             List<RelatedInfo> tokenRelatedInfo = new List<RelatedInfo>();
 
             for (int i = 0; i < _row; i++)
@@ -83,7 +82,7 @@ namespace Tictactoe
                         }
                         else
                         {
-                            relatedInfo = coordinates[i, j].hasRelation(coordinateToCompare);
+                            relatedInfo = coordinates[i, j].getRelation(coordinateToCompare);
                             coordinateToCompare = coordinates[i, j];
                         };
 
@@ -99,7 +98,7 @@ namespace Tictactoe
             return isEnogthToWin(tokenRelatedInfo) ? true : false;
         }
 
-        protected abstract bool isEnogthToWin(List<RelatedInfo> tokenRelatedInfo);
+        internal abstract bool isEnogthToWin(List<RelatedInfo> tokenRelatedInfo);
 
         internal void clearBoard()
         {
@@ -113,9 +112,26 @@ namespace Tictactoe
         }
 
         internal void print() {
+            Console.Clear();
             Console.WriteLine("");
+
             for (int i = 0; i < _row; i++)
             {
+                if (i == 0)
+                {
+                    Console.Write("   {0}", i);
+                }
+                else {
+                    Console.Write(" {0}", i);
+                }
+            }
+
+            Console.WriteLine(" ");
+
+            for (int i = 0; i < _row; i++)
+            {
+                Console.Write(" {0}", i);
+
                 for (int j = 0; j < _column; j++)
                 {
                     Console.Write(" {0}", coordinates[i, j].value.ToString());

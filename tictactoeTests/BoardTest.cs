@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Tictactoe;
 using Tictactoe.enums;
+using Tictactoe.structs;
 using Xunit;
 
 namespace TictactoeTests
@@ -58,30 +61,87 @@ namespace TictactoeTests
         [Fact]
         internal void thereIsTTTTest() {
 
-            Player player = new Player(Symbol.O);
+            Player playerO = new Player(Symbol.O);
+            Player playerX = new Player(Symbol.X);
 
-            //Board board = new Board3x3();
+            Board board = new Board3x3();
 
-            //board.makeMove(player, 0, 0);
-            //board.makeMove(player, 0, 1);
-            //board.makeMove(player, 0, 2);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerX, 1, 1);
+            board.makeMove(playerO, 0, 2);
+            board.makeMove(playerX, 1, 0);
+            board.makeMove(playerO, 1, 2);
 
-            //Assert.True(board.thereIsTTT(player.symbol));
+            Assert.True(!board.thereIsTTT(playerO.symbol)&& !board.areYouFull());
 
-            Board board2 = new Board3x3();
+            board.clearBoard();
 
-            board2.makeMove(player, 0, 0);
-            board2.makeMove(player, 0, 1);
-            board2.makeMove(player, 1, 2);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerO, 0, 1);
+            board.makeMove(playerO, 1, 2);
 
-            Assert.False(board2.thereIsTTT(player.symbol));
+            Assert.False(board.thereIsTTT(playerO.symbol));
+
+            board.clearBoard();
+
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerO, 0, 1);
+            board.makeMove(playerO, 1, 2);
+
+            Assert.False(board.thereIsTTT(playerO.symbol));
         }
 
         [Fact]
         internal void isEnogthToWinTest() {
             Board board = new Board3x3();
 
-            board.isEnogthToWin();
+            List<RelatedInfo> tokenRelatedInfo = new List<RelatedInfo>() {
+                new RelatedInfo()
+                {
+                    hasRelation = true,
+                    relation = RelationType.inColumn
+                }, new RelatedInfo()
+                {
+                    hasRelation = false
+                }, new RelatedInfo()
+                {
+                    hasRelation = true,
+                    relation = RelationType.inDiagonal
+                }, new RelatedInfo()
+                {
+                    hasRelation = false,
+                }, new RelatedInfo()
+                {
+                    hasRelation = true,
+                    relation = RelationType.inColumn
+                }
+            };
+
+            Assert.True( board.isEnogthToWin(tokenRelatedInfo));
+
+
+            tokenRelatedInfo = new List<RelatedInfo>() {
+                new RelatedInfo()
+                {
+                    hasRelation = true,
+                    relation = RelationType.inColumn
+                }, new RelatedInfo()
+                {
+                    hasRelation = false
+                }, new RelatedInfo()
+                {
+                    hasRelation = true,
+                    relation = RelationType.inInverseDiagonal
+                }, new RelatedInfo()
+                {
+                    hasRelation = false,
+                }, new RelatedInfo()
+                {
+                    hasRelation = false,
+                }
+            };
+
+            Assert.False( board.isEnogthToWin(tokenRelatedInfo));
         }
     }
 }

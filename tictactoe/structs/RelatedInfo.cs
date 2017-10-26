@@ -8,6 +8,6 @@ namespace Tictactoe.structs
     internal struct RelatedInfo
     {
         internal bool hasRelation { get; set; }
-        internal RelationType relation { get; set; }
+        internal RelationType? relation { get; set; }
     }
 }

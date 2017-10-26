@@ -31,34 +31,44 @@ namespace Tictactoe
             this.value = Symbol._;
         }
 
-        internal RelatedInfo hasRelation(Coordinate coordinateToCompare)
+        internal RelatedInfo getRelation(Coordinate coordinateToCompare)
         {
             RelatedInfo relationInfo = new RelatedInfo();
             relationInfo.hasRelation = false;
 
-            if (coordinateToCompare._yPoint + 1 == this._yPoint ||
-                coordinateToCompare._yPoint - 1 == this._yPoint) {
-                relationInfo.relation = RelationType.inLine;
+            if (coordinateToCompare._xPoint == this._xPoint &&
+                (coordinateToCompare._yPoint + 1 == this._yPoint ||
+                coordinateToCompare._yPoint - 1 == this._yPoint)) {
+                relationInfo.relation = RelationType.inColumn;
                 relationInfo.hasRelation = true;
+
+                return relationInfo;
             }
 
 
-            if (coordinateToCompare._xPoint + 1 == this._xPoint||
-                coordinateToCompare._xPoint - 1 == this._xPoint) {
-                relationInfo.relation = RelationType.inColumn;
+            if (coordinateToCompare._yPoint == this._yPoint &&
+                (coordinateToCompare._xPoint + 1 == this._xPoint||
+                coordinateToCompare._xPoint - 1 == this._xPoint)) {
+                relationInfo.relation = RelationType.inLine;
                 relationInfo.hasRelation = true;
+
+                return relationInfo;
             }
 
 
             if ((coordinateToCompare._xPoint + 1 == this._xPoint && coordinateToCompare._yPoint + 1 == this._yPoint)) {
                 relationInfo.relation = RelationType.inDiagonal;
                 relationInfo.hasRelation = true;
+
+                return relationInfo;
             } 
 
             if(coordinateToCompare._xPoint - 1 == this._xPoint && coordinateToCompare._yPoint - 1 == this._yPoint) {
 
                 relationInfo.relation = RelationType.inInverseDiagonal;
                 relationInfo.hasRelation=true;
+
+                return relationInfo;
             }
 
             return relationInfo;
