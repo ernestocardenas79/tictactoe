@@ -9,5 +9,7 @@ namespace Tictactoe.structs
     {
         internal bool hasRelation { get; set; }
         internal RelationType? relation { get; set; }
+        internal int? row { get; set; }
+        internal int? column { get; set; }
     }
 }

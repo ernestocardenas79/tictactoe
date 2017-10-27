@@ -84,14 +84,17 @@ namespace Tictactoe
                         {
                             relatedInfo = coordinates[i, j].getRelation(coordinateToCompare);
                             coordinateToCompare = coordinates[i, j];
-                        };
+                        }
 
                         if (relatedInfo.hasRelation)
                         {
                             tokenRelatedInfo.Add(relatedInfo);
                             relatedInfo.hasRelation = false;
-                        };
-                    };
+                            relatedInfo.row = null;
+                            relatedInfo.column = null;
+                            relatedInfo.relation = null;
+                        }
+                    }
                 }
             }
 

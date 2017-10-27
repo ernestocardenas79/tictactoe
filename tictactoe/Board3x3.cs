@@ -19,11 +19,43 @@ namespace Tictactoe
 
         internal override bool isEnogthToWin(List<RelatedInfo> tokenRelatedInfo)
         {
-            var eval = tokenRelatedInfo.Where(tr => tr.hasRelation)
-                        .GroupBy(tr => tr.relation)
-                        .Select(tr => new { relation = tr.Key, count = tr.Count()});
+            var relations = tokenRelatedInfo.Where(tr => tr.hasRelation)
+                        .GroupBy(tr => new {  relation = tr.relation} )
+                        .Select(tr => new { relation = tr.Key.relation, count = tr.Count()})
+                        .Where(tr=> tr.count == relationToWin);
 
-            return eval.Where(e => e.count == relationToWin).Count()==0? false:true;
+            var validate = 0;
+
+            relations.ToList().ForEach(r=>{
+                if (r.relation.Value == RelationType.inColumn) {
+                    validate = tokenRelatedInfo
+                                .Where(tr => tr.relation == RelationType.inColumn)
+                                .Select(tr=> new { tr.column } )
+                                .Distinct()
+                                .Count();
+                }
+
+                if (r.relation.Value == RelationType.inLine)
+                {
+                    validate = tokenRelatedInfo
+                                .Where(tr => tr.relation == RelationType.inLine)
+                                .Select(tr => new { tr.row })
+                                .Distinct()
+                                .Count();
+                }
+
+                if (r.relation.Value == RelationType.inDiagonal)
+                {
+                    validate = tokenRelatedInfo
+                                .Where(tr => tr.relation == RelationType.inDiagonal)
+                                .Select(tr => new { column= tr.column, row = tr.row })
+                                .Count();
+                }
+            });
+
+            //var total= eval.Where(e => e.count == relationToWin).Count();
+
+            return validate == 0? false:true;
         }
     }
 }
