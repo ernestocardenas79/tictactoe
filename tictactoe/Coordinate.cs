@@ -46,7 +46,6 @@ namespace Tictactoe
                 return relationInfo;
             }
 
-
             if (coordinateToCompare._yPoint == this._yPoint &&
                 (coordinateToCompare._xPoint + 1 == this._xPoint||
                 coordinateToCompare._xPoint - 1 == this._xPoint)) {
@@ -57,25 +56,29 @@ namespace Tictactoe
                 return relationInfo;
             }
 
-
-            if ((coordinateToCompare._xPoint + 1 == this._xPoint || coordinateToCompare._xPoint - 1 == this._xPoint) && 
-                (coordinateToCompare._yPoint + 1 == this._yPoint || coordinateToCompare._yPoint - 1 == this._yPoint)) {
+            if (this._xPoint - 1  == coordinateToCompare._xPoint &&
+                this._yPoint -1  == coordinateToCompare._yPoint) {
                 relationInfo.relation = RelationType.inDiagonal;
                 relationInfo.hasRelation = true;
                 relationInfo.row = this._xPoint;
                 relationInfo.column = this._yPoint;
 
                 return relationInfo;
-            } 
+            }
 
-            //if(coordinateToCompare._xPoint - 1 == this._xPoint && 
-            //   coordinateToCompare._yPoint - 1 == this._yPoint) {
+            if (this._xPoint  - 1 == coordinateToCompare._xPoint &&
+                this._yPoint +1 == coordinateToCompare._yPoint)
+            {
 
-            //    relationInfo.relation = RelationType.inInverseDiagonal;
-            //    relationInfo.hasRelation=true;
+                relationInfo.relation = RelationType.inInverseDiagonal;
+                relationInfo.hasRelation = true;
 
-            //    return relationInfo;
-            //}
+                relationInfo.hasRelation = true;
+                relationInfo.row = this._xPoint;
+                relationInfo.column = this._yPoint;
+
+                return relationInfo;
+            }
 
             return relationInfo;
         }

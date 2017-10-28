@@ -24,38 +24,64 @@ namespace Tictactoe
                         .Select(tr => new { relation = tr.Key.relation, count = tr.Count()})
                         .Where(tr=> tr.count == relationToWin);
 
-            var validate = 0;
+            var validate = false;
 
-            relations.ToList().ForEach(r=>{
-                if (r.relation.Value == RelationType.inColumn) {
+            relations.ToList().ForEach(r=>
+            {
+                if (r.relation.Value == RelationType.inColumn)
+                {
                     validate = tokenRelatedInfo
                                 .Where(tr => tr.relation == RelationType.inColumn)
-                                .Select(tr=> new { tr.column } )
+                                .Select(tr => new { tr.row })
                                 .Distinct()
-                                .Count();
+                                .Count() == 1 ? true : false;
                 }
 
                 if (r.relation.Value == RelationType.inLine)
                 {
                     validate = tokenRelatedInfo
                                 .Where(tr => tr.relation == RelationType.inLine)
-                                .Select(tr => new { tr.row })
+                                .Select(tr => new { tr.column })
                                 .Distinct()
-                                .Count();
+                                .Count() == 1 ? true : false;
                 }
 
                 if (r.relation.Value == RelationType.inDiagonal)
                 {
-                    validate = tokenRelatedInfo
-                                .Where(tr => tr.relation == RelationType.inDiagonal)
-                                .Select(tr => new { column= tr.column, row = tr.row })
-                                .Count();
+                    var relDiagonal = tokenRelatedInfo
+                        .Where(tr => tr.relation == RelationType.inDiagonal)
+                        .ToArray();
+
+                    if (relDiagonal[0].row + 1 == relDiagonal[1].row &&
+                        relDiagonal[0].column + 1 == relDiagonal[1].column)
+                    {
+                        validate = true;
+                    }
+                    else
+                    {
+                        validate = false;
+                    }
+                }
+
+                if (r.relation.Value == RelationType.inInverseDiagonal)
+                {
+                    var relInverse = tokenRelatedInfo
+                                .Where(tr => tr.relation == RelationType.inInverseDiagonal)
+                                .ToArray();
+
+                    if (relInverse[0].row + 1 == relInverse[1].row &&
+                        relInverse[0].column -1 == relInverse[1].column)
+                    {
+                        validate = true;
+                    }
+                    else
+                    {
+                        validate = false;
+                    }
                 }
             });
 
-            //var total= eval.Where(e => e.count == relationToWin).Count();
-
-            return validate == 0? false:true;
+            return validate;
         }
     }
 }
