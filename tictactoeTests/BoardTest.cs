@@ -37,14 +37,15 @@ namespace TictactoeTests
         }
 
         [Fact]
-        internal void areYouFullTest() {
+        internal void areYouFullTest()
+        {
             Board board = new Board3x3();
 
             Assert.False(board.areYouFull());
 
             Player player = new Player(Symbol.O);
 
-            board.makeMove(player,0,0);
+            board.makeMove(player, 0, 0);
             board.makeMove(player, 0, 1);
             board.makeMove(player, 0, 2);
             board.makeMove(player, 1, 0);
@@ -75,71 +76,82 @@ namespace TictactoeTests
 
             Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            board.clearBoard();
+            //board.clearBoard();
 
-            board.makeMove(playerO, 0, 0);
-            board.makeMove(playerO, 0, 1);
-            board.makeMove(playerO, 1, 2);
+            //board.makeMove(playerO, 0, 0);
+            //board.makeMove(playerO, 0, 1);
+            //board.makeMove(playerO, 1, 2);
 
-            Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            //Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            board.clearBoard();
+            //board.clearBoard();
 
-            board.makeMove(playerO, 0, 0);
-            board.makeMove(playerX, 1, 0);
-            board.makeMove(playerO, 0, 1);
-            board.makeMove(playerX, 0, 2);
-            board.makeMove(playerO, 2, 2);
-            board.makeMove(playerX, 0, 1);
-            board.makeMove(playerO, 2, 1);
+            //board.makeMove(playerO, 0, 0);
+            //board.makeMove(playerX, 1, 0);
+            //board.makeMove(playerO, 0, 1);
+            //board.makeMove(playerX, 0, 2);
+            //board.makeMove(playerO, 2, 2);
+            //board.makeMove(playerX, 0, 1);
+            //board.makeMove(playerO, 2, 1);
 
-            Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            //Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            board.clearBoard();
+            //board.clearBoard();
 
-            board.makeMove(playerO, 2, 0);
-            board.makeMove(playerX, 1, 0);
-            board.makeMove(playerO, 1, 1);
-            board.makeMove(playerX, 2, 2);
-            board.makeMove(playerO, 0, 2);
+            //board.makeMove(playerO, 2, 0);
+            //board.makeMove(playerX, 1, 0);
+            //board.makeMove(playerO, 1, 1);
+            //board.makeMove(playerX, 2, 2);
+            //board.makeMove(playerO, 0, 2);
 
-            Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            //Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            board.clearBoard();
+            //board.clearBoard();
 
-            board.makeMove(playerO, 0, 0);
-            board.makeMove(playerX, 1, 0);
-            board.makeMove(playerO, 1, 1);
-            board.makeMove(playerX, 0, 2);
-            board.makeMove(playerO, 2, 2);
+            //board.makeMove(playerO, 0, 0);
+            //board.makeMove(playerX, 1, 0);
+            //board.makeMove(playerO, 1, 1);
+            //board.makeMove(playerX, 0, 2);
+            //board.makeMove(playerO, 2, 2);
 
-            Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            //Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            board.clearBoard();
+            //board.clearBoard();
 
-            board.makeMove(playerO, 0, 0);
-            board.makeMove(playerX, 1, 0);
-            board.makeMove(playerO, 0, 1);
-            board.makeMove(playerX, 1, 1);
-            board.makeMove(playerO, 2, 1);
-            board.makeMove(playerX, 2, 0);
-            board.makeMove(playerO, 2, 2);
+            //board.makeMove(playerO, 0, 0);
+            //board.makeMove(playerX, 1, 0);
+            //board.makeMove(playerO, 0, 1);
+            //board.makeMove(playerX, 1, 1);
+            //board.makeMove(playerO, 2, 1);
+            //board.makeMove(playerX, 2, 0);
+            //board.makeMove(playerO, 2, 2);
 
-            Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            //Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            board.clearBoard();
+            //board.clearBoard();
 
-            board.makeMove(playerO, 2, 2);
-            board.makeMove(playerX, 2, 1);
-            board.makeMove(playerO, 0, 1);
-            board.makeMove(playerX, 1, 1);
-            board.makeMove(playerO, 2, 0);
-            board.makeMove(playerX, 1, 2);
-            board.makeMove(playerO, 0, 0);
-            board.makeMove(playerX, 0, 2);
+            //board.makeMove(playerO, 2, 2);
+            //board.makeMove(playerX, 2, 1);
+            //board.makeMove(playerO, 0, 1);
+            //board.makeMove(playerX, 1, 1);
+            //board.makeMove(playerO, 2, 0);
+            //board.makeMove(playerX, 1, 2);
+            //board.makeMove(playerO, 0, 0);
+            //board.makeMove(playerX, 0, 2);
 
-            Assert.True(!board.thereIsTTT(playerX.symbol) && !board.areYouFull());
+            //Assert.True(!board.thereIsTTT(playerX.symbol) && !board.areYouFull());
 
+            //board.clearBoard();
+
+            //board.makeMove(playerO, 1, 1);
+            //board.makeMove(playerX, 0, 0);
+            //board.makeMove(playerO, 1, 0);
+            //board.makeMove(playerX, 1, 2);
+            //board.makeMove(playerO, 2, 0);
+            //board.makeMove(playerX, 0, 1);
+            //board.makeMove(playerO, 0, 2);
+
+            //Assert.False(!board.thereIsTTT(playerX.symbol) && !board.areYouFull());
         }
 
         [Fact]
@@ -150,21 +162,38 @@ namespace TictactoeTests
                 new RelatedInfo()
                 {
                     hasRelation = true,
-                    relation = RelationType.inColumn
+                    coordinateInfo = new List<CoordinateInfo>()
+                    {
+                        new CoordinateInfo() {
+                            relation = RelationType.inColumn,
+                            row=0
+                        }
+                    }
                 }, new RelatedInfo()
                 {
                    hasRelation = false
                 }, new RelatedInfo()
                 {
                     hasRelation = true,
-                    relation = RelationType.inDiagonal
+                    coordinateInfo = new List<CoordinateInfo>(){
+                        new CoordinateInfo() {
+                            relation = RelationType.inDiagonal,
+                            row=1,
+                            column=0
+                        }
+                    }
                 }, new RelatedInfo()
                 {
                     hasRelation = false,
                 }, new RelatedInfo()
                 {
                     hasRelation = true,
-                    relation = RelationType.inColumn
+                    coordinateInfo = new List<CoordinateInfo>(){
+                        new CoordinateInfo() {
+                            relation = RelationType.inColumn,
+                            row=0
+                        }
+                    }
                 }
             };
 
@@ -175,14 +204,14 @@ namespace TictactoeTests
                 new RelatedInfo()
                 {
                     hasRelation = true,
-                    relation = RelationType.inColumn
+                    coordinateInfo = new List<CoordinateInfo>(){ new CoordinateInfo() { relation = RelationType.inColumn }}
                 }, new RelatedInfo()
                 {
                     hasRelation = false
                 }, new RelatedInfo()
                 {
                     hasRelation = true,
-                    relation = RelationType.inInverseDiagonal
+                    coordinateInfo = new List<CoordinateInfo>(){ new CoordinateInfo() { relation = RelationType.inInverseDiagonal }}
                 }, new RelatedInfo()
                 {
                     hasRelation = false,
@@ -192,7 +221,7 @@ namespace TictactoeTests
                 }
             };
 
-            Assert.False( board.isEnogthToWin(tokenRelatedInfo));
+            Assert.False(board.isEnogthToWin(tokenRelatedInfo));
         }
     }
 }

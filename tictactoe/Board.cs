@@ -66,7 +66,7 @@ namespace Tictactoe
         {
             var hasCoordinateToCompare = false;
             Coordinate coordinateToCompare = new Coordinate();
-            RelatedInfo relatedInfo = new RelatedInfo() { hasRelation = false };
+            //RelatedInfo relatedInfo = new RelatedInfo() { hasRelation = false };
             List<RelatedInfo> tokenRelatedInfo = new List<RelatedInfo>();
 
             for (int i = 0; i < _row; i++)
@@ -82,17 +82,14 @@ namespace Tictactoe
                         }
                         else
                         {
-                            relatedInfo = coordinates[i, j].getRelation(coordinateToCompare);
-                            coordinateToCompare = coordinates[i, j];
-                        }
+                            var coordinateList= coordinates[i, j].getRelations(coordinateToCompare);
 
-                        if (relatedInfo.hasRelation)
-                        {
-                            tokenRelatedInfo.Add(relatedInfo);
-                            relatedInfo.hasRelation = false;
-                            relatedInfo.row = null;
-                            relatedInfo.column = null;
-                            relatedInfo.relation = null;
+                            coordinateList.ForEach(cl =>
+                            {
+                                tokenRelatedInfo.Add(cl);
+                            });
+
+                            coordinateToCompare = coordinates[i, j];
                         }
                     }
                 }

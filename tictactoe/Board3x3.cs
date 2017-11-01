@@ -19,18 +19,22 @@ namespace Tictactoe
 
         internal override bool isEnogthToWin(List<RelatedInfo> tokenRelatedInfo)
         {
-            var relations = tokenRelatedInfo.Where(tr => tr.hasRelation)
-                        .GroupBy(tr => new {  relation = tr.relation} )
-                        .Select(tr => new { relation = tr.Key.relation, count = tr.Count()})
-                        .Where(tr=> tr.count == relationToWin);
+            var coordinateList = tokenRelatedInfo
+                            .Where(tr => tr.hasRelation)
+                            .SelectMany(tr => tr.coordinateInfo);
+
+            var relations= coordinateList
+                            .GroupBy(tr=> tr.relation)
+                            .Select(tr=> new { relation= tr.Key, count= tr.Count()})
+                            .Where(tr=> tr.count ==relationToWin);
 
             var validate = false;
 
-            relations.ToList().ForEach(r=>
+            relations.ToList().ForEach(r =>
             {
                 if (r.relation.Value == RelationType.inColumn)
                 {
-                    validate = tokenRelatedInfo
+                    validate = coordinateList
                                 .Where(tr => tr.relation == RelationType.inColumn)
                                 .Select(tr => new { tr.row })
                                 .Distinct()
@@ -39,7 +43,7 @@ namespace Tictactoe
 
                 if (r.relation.Value == RelationType.inLine)
                 {
-                    validate = tokenRelatedInfo
+                    validate = coordinateList
                                 .Where(tr => tr.relation == RelationType.inLine)
                                 .Select(tr => new { tr.column })
                                 .Distinct()
@@ -48,7 +52,7 @@ namespace Tictactoe
 
                 if (r.relation.Value == RelationType.inDiagonal)
                 {
-                    var relDiagonal = tokenRelatedInfo
+                    var relDiagonal = coordinateList
                         .Where(tr => tr.relation == RelationType.inDiagonal)
                         .ToArray();
 
@@ -65,12 +69,12 @@ namespace Tictactoe
 
                 if (r.relation.Value == RelationType.inInverseDiagonal)
                 {
-                    var relInverse = tokenRelatedInfo
+                    var relInverse = coordinateList
                                 .Where(tr => tr.relation == RelationType.inInverseDiagonal)
                                 .ToArray();
 
                     if (relInverse[0].row + 1 == relInverse[1].row &&
-                        relInverse[0].column -1 == relInverse[1].column)
+                        relInverse[0].column - 1 == relInverse[1].column)
                     {
                         validate = true;
                     }
