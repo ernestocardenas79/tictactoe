@@ -17,18 +17,31 @@ namespace Tictactoe
 
         }
 
-        internal override bool isEnogthToWin(List<RelatedInfo> tokenRelatedInfo)
+        internal override bool isEnogthToWin(List<Coordinate> sameSymbolcoordinateList)
         {
+            var validate = false;
+            var coordinates = sameSymbolcoordinateList.ToArray();
+            var tokenRelatedInfo = new List<RelatedInfo>();
+
+            if (sameSymbolcoordinateList.Count() > 2)
+            {
+                for (int i = 1; i >= 0; i--)
+                {
+                    tokenRelatedInfo.Add(coordinates[i].getRelation(coordinates[i-1]));
+                }
+            }
+            else {
+                return validate;
+            }
+
             var coordinateList = tokenRelatedInfo
                             .Where(tr => tr.hasRelation)
-                            .SelectMany(tr => tr.coordinateInfo);
+                            .Select(tr => tr.coordinateInfo);
 
-            var relations= coordinateList
-                            .GroupBy(tr=> tr.relation)
-                            .Select(tr=> new { relation= tr.Key, count= tr.Count()})
-                            .Where(tr=> tr.count ==relationToWin);
-
-            var validate = false;
+            var relations = coordinateList
+                            .GroupBy(tr => tr.relation)
+                            .Select(tr => new { relation = tr.Key, count = tr.Count() })
+                            .Where(tr => tr.count == relationToWin);
 
             relations.ToList().ForEach(r =>
             {
@@ -36,7 +49,7 @@ namespace Tictactoe
                 {
                     validate = coordinateList
                                 .Where(tr => tr.relation == RelationType.inColumn)
-                                .Select(tr => new { tr.row })
+                                .Select(tr => new { tr.coordinate })
                                 .Distinct()
                                 .Count() == 1 ? true : false;
                 }

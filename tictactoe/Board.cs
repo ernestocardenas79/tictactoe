@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Tictactoe.enums;
-using Tictactoe.structs;
 
 namespace Tictactoe
 {
@@ -64,10 +62,9 @@ namespace Tictactoe
 
         internal bool thereIsTTT(Symbol symbol)
         {
-            var hasCoordinateToCompare = false;
             Coordinate coordinateToCompare = new Coordinate();
             //RelatedInfo relatedInfo = new RelatedInfo() { hasRelation = false };
-            List<RelatedInfo> tokenRelatedInfo = new List<RelatedInfo>();
+            List<Coordinate> tokenRelatedInfo = new List<Coordinate>();
 
             for (int i = 0; i < _row; i++)
             {
@@ -75,22 +72,7 @@ namespace Tictactoe
                 {
                     if (coordinates[i, j].value == symbol)
                     {
-                        if (!hasCoordinateToCompare)
-                        {
-                            coordinateToCompare = coordinates[i, j];
-                            hasCoordinateToCompare = true;
-                        }
-                        else
-                        {
-                            var coordinateList= coordinates[i, j].getRelations(coordinateToCompare);
-
-                            coordinateList.ForEach(cl =>
-                            {
-                                tokenRelatedInfo.Add(cl);
-                            });
-
-                            coordinateToCompare = coordinates[i, j];
-                        }
+                        tokenRelatedInfo.Add(coordinates[i, j]);
                     }
                 }
             }
@@ -98,7 +80,7 @@ namespace Tictactoe
             return isEnogthToWin(tokenRelatedInfo) ? true : false;
         }
 
-        internal abstract bool isEnogthToWin(List<RelatedInfo> tokenRelatedInfo);
+        internal abstract bool isEnogthToWin(List<Coordinate> tokenRelatedInfo);
 
         internal void clearBoard()
         {

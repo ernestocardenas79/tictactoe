@@ -8,6 +8,8 @@ namespace Tictactoe
     internal class Coordinate
     {
         internal Symbol value { get; set; }
+        internal int row { get { return _xPoint; } }
+        internal int column { get { return _yPoint; } }
 
         int _xPoint;
         int _yPoint;
@@ -32,24 +34,24 @@ namespace Tictactoe
             this.value = Symbol._;
         }
 
-        internal List<RelatedInfo> getRelations(Coordinate coordinateToCompare)
+        internal RelatedInfo getRelation(Coordinate coordinateToCompare)
         {
-            var tokenRelatedInfo = new List<RelatedInfo>();
+            //var tokenRelatedInfo = new List<RelatedInfo>();
 
             RelatedInfo relationInfo = new RelatedInfo();
             relationInfo.hasRelation = false;
-            relationInfo.coordinateInfo = new List<CoordinateInfo>();
+            relationInfo.coordinateInfo = new CoordinateInfo();
 
             if (coordinateToCompare._xPoint == this._xPoint &&
                 (coordinateToCompare._yPoint + 1 == this._yPoint ||
                 coordinateToCompare._yPoint - 1 == this._yPoint)) {
-                relationInfo.hasRelation = true;
 
-                relationInfo.coordinateInfo.Add(new CoordinateInfo()
+                relationInfo.hasRelation = true;
+                relationInfo.coordinateInfo = new CoordinateInfo()
                 {
                     relation = RelationType.inColumn,
-                    row = this._xPoint
-                });
+                    coordinate = new Coordinate(this._xPoint, this._yPoint)
+                };
             }
 
             if (coordinateToCompare._yPoint == this._yPoint &&
@@ -57,25 +59,22 @@ namespace Tictactoe
                 coordinateToCompare._xPoint - 1 == this._xPoint)) {
 
                 relationInfo.hasRelation = true;
-                relationInfo.coordinateInfo.Add(new CoordinateInfo()
+                relationInfo.coordinateInfo = new CoordinateInfo()
                 {
                     relation = RelationType.inLine,
-                    row = this._xPoint,
-                    column = this._yPoint
-                });
+                    coordinate = new Coordinate(this._xPoint, this._yPoint)
+                };
             }
 
             if (this._xPoint - 1  == coordinateToCompare._xPoint &&
                 this._yPoint -1  == coordinateToCompare._yPoint) {
 
                 relationInfo.hasRelation = true;
-
-                relationInfo.coordinateInfo.Add(new CoordinateInfo()
+                relationInfo.coordinateInfo = new CoordinateInfo()
                 {
                     relation = RelationType.inDiagonal,
-                    row = this._xPoint,
-                    column = this._yPoint
-                });
+                    coordinate = new Coordinate(this._xPoint, this._yPoint)
+                };
             }
 
             if (this._xPoint  - 1 == coordinateToCompare._xPoint &&
@@ -83,27 +82,24 @@ namespace Tictactoe
             {
                 relationInfo.hasRelation = true;
 
-                relationInfo.coordinateInfo.Add(new CoordinateInfo()
+                relationInfo.coordinateInfo = new CoordinateInfo()
                 {
                     relation = RelationType.inInverseDiagonal,
-                    row = this._xPoint,
-                    column = this._yPoint
-                });
+                    coordinate = new Coordinate(this._xPoint, this._yPoint)
+                };
             }
 
             if (relationInfo.hasRelation)
             {
-                tokenRelatedInfo.Add(relationInfo);
                 relationInfo.hasRelation = false;
-                relationInfo.coordinateInfo.Add(new CoordinateInfo()
+                relationInfo.coordinateInfo = new CoordinateInfo()
                 {
                     relation = null,
-                    row = null,
-                    column = null
-                });
+                    coordinate = new Coordinate()
+                };
             }
 
-            return tokenRelatedInfo;
+            return relationInfo;
         }
     }
 }
