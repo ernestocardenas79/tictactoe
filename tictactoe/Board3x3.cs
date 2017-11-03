@@ -19,86 +19,48 @@ namespace Tictactoe
 
         internal override bool isEnogthToWin(List<Coordinate> sameSymbolcoordinateList)
         {
-            var validate = false;
-            var coordinates = sameSymbolcoordinateList.ToArray();
-            var tokenRelatedInfo = new List<RelatedInfo>();
+            var relatedCoordinateList= Coordinate.relatedCoordinate(sameSymbolcoordinateList);
 
-            if (sameSymbolcoordinateList.Count() > 2)
-            {
-                for (int i = 1; i >= 0; i--)
-                {
-                    tokenRelatedInfo.Add(coordinates[i].getRelation(coordinates[i-1]));
-                }
-            }
-            else {
-                return validate;
-            }
-
-            var coordinateList = tokenRelatedInfo
-                            .Where(tr => tr.hasRelation)
-                            .Select(tr => tr.coordinateInfo);
-
-            var relations = coordinateList
+            var relations = relatedCoordinateList
                             .GroupBy(tr => tr.relation)
                             .Select(tr => new { relation = tr.Key, count = tr.Count() })
                             .Where(tr => tr.count == relationToWin);
 
-            relations.ToList().ForEach(r =>
+            var winner = false;
+
+            foreach (var relation in relations)
             {
-                if (r.relation.Value == RelationType.inColumn)
+                if(relation.relation.Value == RelationType.inColumn)
                 {
-                    validate = coordinateList
-                                .Where(tr => tr.relation == RelationType.inColumn)
-                                .Select(tr => new { tr.coordinate })
-                                .Distinct()
-                                .Count() == 1 ? true : false;
+                    winner = Coordinate.hasSameColumn(relatedCoordinateList
+                                            .Where(tr => tr.relation == RelationType.inColumn));
                 }
 
-                if (r.relation.Value == RelationType.inLine)
+                if (relation.relation.Value == RelationType.inLine)
                 {
-                    validate = coordinateList
-                                .Where(tr => tr.relation == RelationType.inLine)
-                                .Select(tr => new { tr.column })
-                                .Distinct()
-                                .Count() == 1 ? true : false;
+                    winner = Coordinate.hasSameLine(relatedCoordinateList
+                                    .Where(tr => tr.relation == RelationType.inLine));
                 }
 
-                if (r.relation.Value == RelationType.inDiagonal)
+                if (relation.relation.Value == RelationType.inDiagonal)
                 {
-                    var relDiagonal = coordinateList
-                        .Where(tr => tr.relation == RelationType.inDiagonal)
-                        .ToArray();
-
-                    if (relDiagonal[0].row + 1 == relDiagonal[1].row &&
-                        relDiagonal[0].column + 1 == relDiagonal[1].column)
-                    {
-                        validate = true;
-                    }
-                    else
-                    {
-                        validate = false;
-                    }
+                    winner = Coordinate.areInDiagonal(relatedCoordinateList
+                                            .Where(tr => tr.relation == RelationType.inDiagonal));
                 }
 
-                if (r.relation.Value == RelationType.inInverseDiagonal)
+                if (relation.relation.Value == RelationType.inInverseDiagonal)
                 {
-                    var relInverse = coordinateList
-                                .Where(tr => tr.relation == RelationType.inInverseDiagonal)
-                                .ToArray();
-
-                    if (relInverse[0].row + 1 == relInverse[1].row &&
-                        relInverse[0].column - 1 == relInverse[1].column)
-                    {
-                        validate = true;
-                    }
-                    else
-                    {
-                        validate = false;
-                    }
+                    winner= Coordinate.areInverseDiagonal(relatedCoordinateList
+                                        .Where(tr => tr.relation == RelationType.inInverseDiagonal));
                 }
-            });
 
-            return validate;
+                if (winner)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

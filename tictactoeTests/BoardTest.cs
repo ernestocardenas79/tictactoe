@@ -76,152 +76,95 @@ namespace TictactoeTests
 
             Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 0, 0);
-            //board.makeMove(playerO, 0, 1);
-            //board.makeMove(playerO, 1, 2);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerO, 0, 1);
+            board.makeMove(playerO, 1, 2);
 
-            //Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 0, 0);
-            //board.makeMove(playerX, 1, 0);
-            //board.makeMove(playerO, 0, 1);
-            //board.makeMove(playerX, 0, 2);
-            //board.makeMove(playerO, 2, 2);
-            //board.makeMove(playerX, 0, 1);
-            //board.makeMove(playerO, 2, 1);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerX, 1, 0);
+            board.makeMove(playerO, 0, 1);
+            board.makeMove(playerX, 0, 2);
+            board.makeMove(playerO, 2, 2);
+            board.makeMove(playerX, 0, 1);
+            board.makeMove(playerO, 2, 1);
 
-            //Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 2, 0);
-            //board.makeMove(playerX, 1, 0);
-            //board.makeMove(playerO, 1, 1);
-            //board.makeMove(playerX, 2, 2);
-            //board.makeMove(playerO, 0, 2);
+            board.makeMove(playerO, 2, 0);
+            board.makeMove(playerX, 1, 0);
+            board.makeMove(playerO, 1, 1);
+            board.makeMove(playerX, 2, 2);
+            board.makeMove(playerO, 0, 2);
 
-            //Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 0, 0);
-            //board.makeMove(playerX, 1, 0);
-            //board.makeMove(playerO, 1, 1);
-            //board.makeMove(playerX, 0, 2);
-            //board.makeMove(playerO, 2, 2);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerX, 1, 0);
+            board.makeMove(playerO, 1, 1);
+            board.makeMove(playerX, 0, 2);
+            board.makeMove(playerO, 2, 2);
 
-            //Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 0, 0);
-            //board.makeMove(playerX, 1, 0);
-            //board.makeMove(playerO, 0, 1);
-            //board.makeMove(playerX, 1, 1);
-            //board.makeMove(playerO, 2, 1);
-            //board.makeMove(playerX, 2, 0);
-            //board.makeMove(playerO, 2, 2);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerX, 1, 0);
+            board.makeMove(playerO, 0, 1);
+            board.makeMove(playerX, 1, 1);
+            board.makeMove(playerO, 2, 1);
+            board.makeMove(playerX, 2, 0);
+            board.makeMove(playerO, 2, 2);
 
-            //Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
+            Assert.True(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 2, 2);
-            //board.makeMove(playerX, 2, 1);
-            //board.makeMove(playerO, 0, 1);
-            //board.makeMove(playerX, 1, 1);
-            //board.makeMove(playerO, 2, 0);
-            //board.makeMove(playerX, 1, 2);
-            //board.makeMove(playerO, 0, 0);
-            //board.makeMove(playerX, 0, 2);
+            board.makeMove(playerO, 2, 2);
+            board.makeMove(playerX, 2, 1);
+            board.makeMove(playerO, 0, 1);
+            board.makeMove(playerX, 1, 1);
+            board.makeMove(playerO, 2, 0);
+            board.makeMove(playerX, 1, 2);
+            board.makeMove(playerO, 0, 0);
+            board.makeMove(playerX, 0, 2);
 
-            //Assert.True(!board.thereIsTTT(playerX.symbol) && !board.areYouFull());
+            Assert.True(!board.thereIsTTT(playerX.symbol) && !board.areYouFull());
 
-            //board.clearBoard();
+            board.clearBoard();
 
-            //board.makeMove(playerO, 1, 1);
-            //board.makeMove(playerX, 0, 0);
-            //board.makeMove(playerO, 1, 0);
-            //board.makeMove(playerX, 1, 2);
-            //board.makeMove(playerO, 2, 0);
-            //board.makeMove(playerX, 0, 1);
-            //board.makeMove(playerO, 0, 2);
+            board.makeMove(playerO, 1, 1);
+            board.makeMove(playerX, 0, 0);
+            board.makeMove(playerO, 1, 0);
+            board.makeMove(playerX, 1, 2);
+            board.makeMove(playerO, 2, 0);
+            board.makeMove(playerX, 0, 1);
+            board.makeMove(playerO, 0, 2);
 
-            //Assert.False(!board.thereIsTTT(playerX.symbol) && !board.areYouFull());
+            Assert.False(!board.thereIsTTT(playerO.symbol) && !board.areYouFull());
         }
 
         [Fact]
         internal void isEnogthToWinTest() {
             Board board = new Board3x3();
 
-            List<RelatedInfo> tokenRelatedInfo = new List<RelatedInfo>() {
-                new RelatedInfo()
-                {
-                    hasRelation = true,
-                    coordinateInfo = new List<CoordinateInfo>()
-                    {
-                        new CoordinateInfo() {
-                            relation = RelationType.inColumn,
-                            row=0
-                        }
-                    }
-                }, new RelatedInfo()
-                {
-                   hasRelation = false
-                }, new RelatedInfo()
-                {
-                    hasRelation = true,
-                    coordinateInfo = new List<CoordinateInfo>(){
-                        new CoordinateInfo() {
-                            relation = RelationType.inDiagonal,
-                            row=1,
-                            column=0
-                        }
-                    }
-                }, new RelatedInfo()
-                {
-                    hasRelation = false,
-                }, new RelatedInfo()
-                {
-                    hasRelation = true,
-                    coordinateInfo = new List<CoordinateInfo>(){
-                        new CoordinateInfo() {
-                            relation = RelationType.inColumn,
-                            row=0
-                        }
-                    }
-                }
-            };
+            var coordianteList = new List<Coordinate>();
+            coordianteList.Add(new Coordinate(0,0));
+            coordianteList.Add(new Coordinate(1,0));
+            coordianteList.Add(new Coordinate(2, 0));
+            
+            Assert.True( board.isEnogthToWin(coordianteList));
 
-            Assert.True( board.isEnogthToWin(tokenRelatedInfo));
-
-
-            tokenRelatedInfo = new List<RelatedInfo>() {
-                new RelatedInfo()
-                {
-                    hasRelation = true,
-                    coordinateInfo = new List<CoordinateInfo>(){ new CoordinateInfo() { relation = RelationType.inColumn }}
-                }, new RelatedInfo()
-                {
-                    hasRelation = false
-                }, new RelatedInfo()
-                {
-                    hasRelation = true,
-                    coordinateInfo = new List<CoordinateInfo>(){ new CoordinateInfo() { relation = RelationType.inInverseDiagonal }}
-                }, new RelatedInfo()
-                {
-                    hasRelation = false,
-                }, new RelatedInfo()
-                {
-                    hasRelation = false,
-                }
-            };
-
-            Assert.False(board.isEnogthToWin(tokenRelatedInfo));
         }
     }
 }
