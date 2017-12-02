@@ -11,7 +11,7 @@ namespace TictactoeTests
     public class BoardTest
     {
         [Fact]
-        internal void chooseRightCoordinate()
+        internal void chooseValidCoordinate()
         {
             Board board = new Board3x3();
 

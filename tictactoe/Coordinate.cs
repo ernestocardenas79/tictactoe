@@ -50,9 +50,9 @@ namespace Tictactoe
                 });
 
             return tokenRelatedInfo
-                            .Where(tr => tr.hasRelation)
-                            .Select(tr => tr.coordinateInfo)
-                            .ToList();
+                    .Where(tr => tr.hasRelation)
+                    .Select(tr => tr.coordinateInfo)
+                    .ToList();
         }
 
         internal static bool hasSameLine(IEnumerable<CoordinateInfo> coordinate)
@@ -89,7 +89,7 @@ namespace Tictactoe
                 relationInfo.hasRelation = true;
                 relationInfo.coordinateInfo = new CoordinateInfo()
                 {
-                    relation = RelationType.inColumn,
+                    relation = RelationType.inLine,
                     coordinate = new Coordinate(this._xPoint, this._yPoint)
                 };
             }
@@ -102,7 +102,7 @@ namespace Tictactoe
                 relationInfo.hasRelation = true;
                 relationInfo.coordinateInfo = new CoordinateInfo()
                 {
-                    relation = RelationType.inLine,
+                    relation = RelationType.inColumn,
                     coordinate = new Coordinate(this._xPoint, this._yPoint)
                 };
             }
